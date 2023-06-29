@@ -1,0 +1,36 @@
+{
+  "id": 516,
+  "title": "PUBG: BATTLEGROUNDS",
+  "thumbnail": "https://www.freetogame.com/g/516/thumbnail.jpg",
+  "status": "Live",
+  "short_description": "Get into the action in one of the longest running battle royale games PUBG Battlegrounds.",
+  "description": "Get into the action in one of the longest running battle royale games PUBG Battlegrounds. Originally titled PlayerUnknown’s Battlegrounds, the game has been offering players the full battle royale experience in a more realistic setting since 2017. Test yourself against 99 other players on seven different maps using whatever weapons you can find. Just be sure to be the last one standing, because that’s the only way to win.\r\n\r\nGo it alone or play with friends in groups of two or four. Start out with only the clothes on your back, loot buildings, towns, and other locations to obtain the equipment you need. This includes weapons, armor, vehicles, and more. If you want the really good gear – and it’s likely you do – you’ll have to take some risks and head to the more dangerous zones on the map.\r\n\r\nAs is generally the case with the battle royale formula, PUBG’s map shrinks over time, herding all players into a random location where they will eventually have no choice but to engage each other or risk taking damage outside the restricted area. At the same time, random areas of the map will be bombed. So, players must be aware of both events and do their best to avoid them.\r\n\r\nPUBG Battlegrounds is free-to-play and offers players purchasable items in the form of cosmetics. These do not impact game play.\r\n",
+  "game_url": "https://www.freetogame.com/open/pubg",
+  "genre": "Shooter",
+  "platform": "Windows",
+  "publisher": "KRAFTON, Inc.",
+  "developer": "KRAFTON, Inc.",
+  "release_date": "2022-01-12",
+  "freetogame_profile_url": "https://www.freetogame.com/pubg",
+  "minimum_system_requirements": {
+    "os": "64-bit Windows 7, Windows 8.1, Windows 10",
+    "processor": "Intel Core i5-4430 / AMD FX-6300",
+    "memory": "8 GB RAM",
+    "graphics": "NVIDIA GeForce GTX 960 2GB / AMD Radeon R7 370 2GB",
+    "storage": "40 GB available space"
+  },
+  "screenshots": [
+    {
+      "id": 1256,
+      "image": "https://www.freetogame.com/g/516/pubg-1.jpg"
+    },
+    {
+      "id": 1257,
+      "image": "https://www.freetogame.com/g/516/pubg-2.jpg"
+    },
+    {
+      "id": 1258,
+      "image": "https://www.freetogame.com/g/516/pubg-3.jpg"
+    }
+  ]
+}

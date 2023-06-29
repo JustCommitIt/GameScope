@@ -13,6 +13,8 @@
 		F1E20C7A2A4D6E1B00772B80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1E20C782A4D6E1B00772B80 /* Main.storyboard */; };
 		F1E20C7C2A4D6E1C00772B80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E20C7B2A4D6E1C00772B80 /* Assets.xcassets */; };
 		F1E20C7F2A4D6E1C00772B80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1E20C7D2A4D6E1C00772B80 /* LaunchScreen.storyboard */; };
+		F6B45FA82A4DA96000F1D0DB /* popular-pvp-games.json in Resources */ = {isa = PBXBuildFile; fileRef = F6B45FA72A4DA96000F1D0DB /* popular-pvp-games.json */; };
+		F6B45FAA2A4DA9C200F1D0DB /* detail-game-pubg.json in Resources */ = {isa = PBXBuildFile; fileRef = F6B45FA92A4DA9C200F1D0DB /* detail-game-pubg.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		F1E20C7B2A4D6E1C00772B80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1E20C7E2A4D6E1C00772B80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1E20C802A4D6E1C00772B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6B45FA72A4DA96000F1D0DB /* popular-pvp-games.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "popular-pvp-games.json"; sourceTree = "<group>"; };
+		F6B45FA92A4DA9C200F1D0DB /* detail-game-pubg.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "detail-game-pubg.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				F1E20C7B2A4D6E1C00772B80 /* Assets.xcassets */,
 				F1E20C7D2A4D6E1C00772B80 /* LaunchScreen.storyboard */,
 				F1E20C802A4D6E1C00772B80 /* Info.plist */,
+				F6B45FA72A4DA96000F1D0DB /* popular-pvp-games.json */,
+				F6B45FA92A4DA9C200F1D0DB /* detail-game-pubg.json */,
 			);
 			path = GameScope;
 			sourceTree = "<group>";
@@ -126,7 +132,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1E20C7F2A4D6E1C00772B80 /* LaunchScreen.storyboard in Resources */,
+				F6B45FAA2A4DA9C200F1D0DB /* detail-game-pubg.json in Resources */,
 				F1E20C7C2A4D6E1C00772B80 /* Assets.xcassets in Resources */,
+				F6B45FA82A4DA96000F1D0DB /* popular-pvp-games.json in Resources */,
 				F1E20C7A2A4D6E1B00772B80 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
