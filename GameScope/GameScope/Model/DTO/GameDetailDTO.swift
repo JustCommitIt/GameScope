@@ -59,7 +59,24 @@ extension GameDetailDTO {
         developer = try container.decode(String.self, forKey: .developer)
         releaseDate = try container.decode(String.self, forKey: .releaseDate)
         freetogameProfileURL = try container.decode(String.self, forKey: .freetogameProfileURL)
-        minimumSystemRequirements = try container.decode(MinimumSystemRequirementsDTO.self, forKey: .minimumSystemRequirements)
+        minimumSystemRequirements = try container.decode(MinimumSystemRequirementsDTO.self,
+                                                         forKey: .minimumSystemRequirements)
         screenshots = try container.decode([ScreenshotDTO].self, forKey: .screenshots)
+    }
+}
+
+extension GameDetailDTO {
+    func convert() -> GameDetail {
+        let images = screenshots.map { $0.image }
+
+        return .init(title: title,
+                     thumbnail: thumbnail,
+                     description: description,
+                     gameURL: gameURL,
+                     genre: genre,
+                     publisher: publisher,
+                     developer: developer,
+                     releaseDate: releaseDate,
+                     screenshots: images)
     }
 }

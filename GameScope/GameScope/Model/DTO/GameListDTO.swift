@@ -53,3 +53,12 @@ extension GameDTO {
         freetogameProfileURL = try container.decode(String.self , forKey: .freetogameProfileURL)
     }
 }
+
+extension GameDTO {
+    func convert() -> Game {
+        return .init(id: id,
+                     title: title,
+                     thumbnail: thumbnail,
+                     shortDescription: shortDescription)
+    }
+}
