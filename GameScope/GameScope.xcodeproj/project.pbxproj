@@ -15,6 +15,10 @@
 		F1E20C7F2A4D6E1C00772B80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1E20C7D2A4D6E1C00772B80 /* LaunchScreen.storyboard */; };
 		F6B45FA82A4DA96000F1D0DB /* popular-pvp-games.json in Resources */ = {isa = PBXBuildFile; fileRef = F6B45FA72A4DA96000F1D0DB /* popular-pvp-games.json */; };
 		F6B45FAA2A4DA9C200F1D0DB /* detail-game-pubg.json in Resources */ = {isa = PBXBuildFile; fileRef = F6B45FA92A4DA9C200F1D0DB /* detail-game-pubg.json */; };
+		F6B45FAC2A4E71DA00F1D0DB /* GameListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45FAB2A4E71DA00F1D0DB /* GameListDTO.swift */; };
+		F6B45FAE2A4E752900F1D0DB /* GameDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45FAD2A4E752900F1D0DB /* GameDetailDTO.swift */; };
+		F6B45FB02A4E768B00F1D0DB /* MinimumSystemRequirementsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45FAF2A4E768B00F1D0DB /* MinimumSystemRequirementsDTO.swift */; };
+		F6B45FB22A4E775100F1D0DB /* ScreenshotDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45FB12A4E775100F1D0DB /* ScreenshotDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		F1E20C802A4D6E1C00772B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6B45FA72A4DA96000F1D0DB /* popular-pvp-games.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "popular-pvp-games.json"; sourceTree = "<group>"; };
 		F6B45FA92A4DA9C200F1D0DB /* detail-game-pubg.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "detail-game-pubg.json"; sourceTree = "<group>"; };
+		F6B45FAB2A4E71DA00F1D0DB /* GameListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListDTO.swift; sourceTree = "<group>"; };
+		F6B45FAD2A4E752900F1D0DB /* GameDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailDTO.swift; sourceTree = "<group>"; };
+		F6B45FAF2A4E768B00F1D0DB /* MinimumSystemRequirementsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumSystemRequirementsDTO.swift; sourceTree = "<group>"; };
+		F6B45FB12A4E775100F1D0DB /* ScreenshotDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +77,20 @@
 				F1E20C802A4D6E1C00772B80 /* Info.plist */,
 				F6B45FA72A4DA96000F1D0DB /* popular-pvp-games.json */,
 				F6B45FA92A4DA9C200F1D0DB /* detail-game-pubg.json */,
+				F6B45FB42A4E7A1800F1D0DB /* DTO */,
 			);
 			path = GameScope;
+			sourceTree = "<group>";
+		};
+		F6B45FB42A4E7A1800F1D0DB /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				F6B45FAB2A4E71DA00F1D0DB /* GameListDTO.swift */,
+				F6B45FAD2A4E752900F1D0DB /* GameDetailDTO.swift */,
+				F6B45FAF2A4E768B00F1D0DB /* MinimumSystemRequirementsDTO.swift */,
+				F6B45FB12A4E775100F1D0DB /* ScreenshotDTO.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +168,11 @@
 			files = (
 				F1E20C772A4D6E1B00772B80 /* ViewController.swift in Sources */,
 				F1E20C732A4D6E1B00772B80 /* AppDelegate.swift in Sources */,
+				F6B45FAE2A4E752900F1D0DB /* GameDetailDTO.swift in Sources */,
+				F6B45FB02A4E768B00F1D0DB /* MinimumSystemRequirementsDTO.swift in Sources */,
 				F1E20C752A4D6E1B00772B80 /* SceneDelegate.swift in Sources */,
+				F6B45FB22A4E775100F1D0DB /* ScreenshotDTO.swift in Sources */,
+				F6B45FAC2A4E71DA00F1D0DB /* GameListDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
