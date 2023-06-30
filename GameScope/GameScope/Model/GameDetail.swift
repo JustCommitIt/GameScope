@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GameDetail {
+struct GameDetail: Equatable {
     let title: String
     let thumbnail: String
     let description: String
