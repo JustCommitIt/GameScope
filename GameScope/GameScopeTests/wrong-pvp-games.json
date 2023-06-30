@@ -1,0 +1,41 @@
+[
+    {
+        "id": 516,
+        "title": "PUBG: BATTLEGROUNDS",
+        "thumbnail": "https://www.freetogame.com/g/516/thumbnail.jpg",
+        "short_description": "Get into the action in one of the longest running battle royale games PUBG Battlegrounds.",
+        "game_url": "https://www.freetogame.com/open/pubg",
+        "genre": "Shooter",
+        "platform": "PC (Windows)",
+        "publisher": "KRAFTON, Inc.",
+        "developer": "KRAFTON, Inc.",
+        "release_date": "2022-01-12",
+        "freetogame_profile_url": "https://www.freetogame.com/pubg"
+    },
+    {
+        "id": 523,
+        "title": "Fall Guys",
+        "thumbnail": "https://www.freetogame.com/g/523/thumbnail.jpg",
+        "short_description": "Play the most competitive massively multiplayer party royale game featuring beans ever for free on a variety of platforms. ",
+        "game_url": "https://www.freetogame.com/open/fall-guys",
+        "genre": "Battle Royale",
+        "platform": "PC (Windows)",
+        "publisher": "Mediatonic",
+        "developer": "Mediatonic",
+        "release_date": "2020-08-04",
+        "freetogame_profile_url": "https://www.freetogame.com/fall-guys"
+    },
+    {
+        "identifier": 466,
+        "title": "Valorant",
+        "thumbnail": "https://www.freetogame.com/g/466/thumbnail.jpg",
+        "short_description": "Test your mettle in Riot Games’ character-based FPS shooter Valorant.",
+        "game_url": "https://www.freetogame.com/open/valorant",
+        "genre": "Shooter",
+        "platform": "PC (Windows)",
+        "publisher": "Riot Games",
+        "developer": "Riot Games",
+        "release_date": "2020-06-02",
+        "freetogame_profile_url": "https://www.freetogame.com/valorant"
+    }
+]
