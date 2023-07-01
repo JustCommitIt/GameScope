@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F15550722A4EDD0400832E92 /* gameListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15550712A4EDD0400832E92 /* gameListCollectionViewCell.swift */; };
 		F1E20C732A4D6E1B00772B80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E20C722A4D6E1B00772B80 /* AppDelegate.swift */; };
 		F1E20C752A4D6E1B00772B80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E20C742A4D6E1B00772B80 /* SceneDelegate.swift */; };
 		F1E20C772A4D6E1B00772B80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E20C762A4D6E1B00772B80 /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F15550712A4EDD0400832E92 /* gameListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameListCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1E20C6F2A4D6E1B00772B80 /* GameScope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameScope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E20C722A4D6E1B00772B80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1E20C742A4D6E1B00772B80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F15550702A4EDCEC00832E92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F15550712A4EDD0400832E92 /* gameListCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F15550732A4EE20F00832E92 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		F1E20C662A4D6E1B00772B80 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +136,8 @@
 				F1E20C802A4D6E1C00772B80 /* Info.plist */,
 				F6B45FA72A4DA96000F1D0DB /* popular-pvp-games.json */,
 				F6B45FA92A4DA9C200F1D0DB /* detail-game-pubg.json */,
+				F15550732A4EE20F00832E92 /* Controller */,
+				F15550702A4EDCEC00832E92 /* View */,
 				F6B45FB52A4EA71500F1D0DB /* Model */,
 			);
 			path = GameScope;
@@ -271,6 +290,7 @@
 			files = (
 				F6B45FB72A4EA77000F1D0DB /* GameDetail.swift in Sources */,
 				F1E20C772A4D6E1B00772B80 /* ViewController.swift in Sources */,
+				F15550722A4EDD0400832E92 /* gameListCollectionViewCell.swift in Sources */,
 				F1E20C732A4D6E1B00772B80 /* AppDelegate.swift in Sources */,
 				F6B45FAE2A4E752900F1D0DB /* GameDetailDTO.swift in Sources */,
 				F6B45FB02A4E768B00F1D0DB /* MinimumSystemRequirementsDTO.swift in Sources */,
