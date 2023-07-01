@@ -13,13 +13,13 @@ class gameListCollectionViewCell: UICollectionViewCell {
     enum Constants {
         static let gameTitleLabelFontSize: CGFloat = 20
         static let gameDescribsionLabelFontSize: CGFloat = 11
-        static let squareThumnailImageSize: CGFloat = 72
+        static let squareThumbnailImageSize: CGFloat = 72
         static let squareBadgeImageSize: CGFloat = 26
 
         static let firstRankBadgeImageName = "RankBedgeGold"
         static let secondRankBadgeImageName = "RankBedgeSilver"
         static let thirdRankBadgeImageName = "RankBedgeBronze"
-        static let defaultThumnailImageName = "gamecontroller.fill"
+        static let defaultThumbnailImageName = "gamecontroller.fill"
     }
 
     // MARK: - Properties
@@ -31,10 +31,10 @@ class gameListCollectionViewCell: UICollectionViewCell {
         imageView.image = nil
         return imageView
     }()
-    private let gameThumnailImageView: UIImageView = {
+    private let gameThumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(systemName: Constants.defaultThumnailImageName)
+        imageView.image = UIImage(systemName: Constants.defaultThumbnailImageName)
         return imageView
     }()
     private let gameTitleLabel: UILabel = {
@@ -64,7 +64,7 @@ class gameListCollectionViewCell: UICollectionViewCell {
         gameTitleLabel.text = game.title
         gameDescribsionLabel.text = game.shortDescription
         if let thumbnail {
-            gameThumnailImageView.image = thumbnail
+            gameThumbnailImageView.image = thumbnail
         }
         setRankBedgeStyle(rank: indexpath.row)
     }
@@ -89,7 +89,7 @@ class gameListCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupLayout() {
-        contentView.addSubview(gameThumnailImageView)
+        contentView.addSubview(gameThumbnailImageView)
         contentView.addSubview(gameTitleLabel)
         contentView.addSubview(gameDescribsionLabel)
         contentView.addSubview(rankBedge)
@@ -98,17 +98,17 @@ class gameListCollectionViewCell: UICollectionViewCell {
             make.width.height.equalTo(Constants.squareBadgeImageSize)
             make.top.leading.equalToSuperview()
         }
-        gameThumnailImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(Constants.squareThumnailImageSize)
+        gameThumbnailImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(Constants.squareThumbnailImageSize)
             make.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading)
             make.centerY.equalToSuperview()
         }
         gameTitleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(gameThumnailImageView)
+            make.leading.equalTo(gameThumbnailImageView)
             make.top.equalToSuperview()
         }
         gameDescribsionLabel.snp.makeConstraints { make in
-            make.leading.equalTo(gameThumnailImageView)
+            make.leading.equalTo(gameThumbnailImageView)
             make.top.equalTo(gameTitleLabel)
         }
     }
