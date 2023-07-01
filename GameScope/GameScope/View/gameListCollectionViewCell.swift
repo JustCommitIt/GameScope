@@ -59,13 +59,12 @@ class gameListCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: - Public
-    func configure(indexpath: IndexPath, gameInfo: GameDTO, thumnail: UIImage?) {
-        let game = gameInfo.convert()
+    func configure(indexpath: IndexPath, game: Game, thumbnail: UIImage?) {
         gameIdNumber = game.id
         gameTitleLabel.text = game.title
         gameDescribsionLabel.text = game.shortDescription
-        if let thumnail {
-            gameThumnailImageView.image = thumnail
+        if let thumbnail {
+            gameThumnailImageView.image = thumbnail
         }
         setRankBedgeStyle(rank: indexpath.row)
     }
@@ -102,7 +101,7 @@ class gameListCollectionViewCell: UICollectionViewCell {
         gameThumnailImageView.snp.makeConstraints { make in
             make.width.height.equalTo(Constants.squareThumnailImageSize)
             make.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading)
-            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
         gameTitleLabel.snp.makeConstraints { make in
             make.leading.equalTo(gameThumnailImageView)
