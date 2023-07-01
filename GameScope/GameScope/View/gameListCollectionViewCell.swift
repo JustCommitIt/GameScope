@@ -90,8 +90,8 @@ class gameListCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupLayout() {
-        gameThumnailImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(Constants.squareThumnailImageSize)
+        rankBedge.snp.makeConstraints { make in
+            make.width.height.equalTo(Constants.squareBadgeImageSize)
             make.top.leading.equalToSuperview()
         }
         gameThumnailImageView.snp.makeConstraints { make in
