@@ -90,6 +90,11 @@ class gameListCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupLayout() {
+        contentView.addSubview(gameThumnailImageView)
+        contentView.addSubview(gameTitleLabel)
+        contentView.addSubview(gameDescribsionLabel)
+        contentView.addSubview(rankBedge)
+
         rankBedge.snp.makeConstraints { make in
             make.width.height.equalTo(Constants.squareBadgeImageSize)
             make.top.leading.equalToSuperview()
