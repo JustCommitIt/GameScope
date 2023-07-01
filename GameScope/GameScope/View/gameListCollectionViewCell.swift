@@ -16,9 +16,9 @@ class gameListCollectionViewCell: UICollectionViewCell {
         static let squareThumnailImageSize: CGFloat = 72
         static let squareBadgeImageSize: CGFloat = 26
 
-        static let firstRankBadge = "RankBedgeGold"
-        static let secondRankBadge = "RankBedgeSilver"
-        static let thirdRankBadge = "RankBedgeBronze"
+        static let firstRankBadgeImageName = "RankBedgeGold"
+        static let secondRankBadgeImageName = "RankBedgeSilver"
+        static let thirdRankBadgeImageName = "RankBedgeBronze"
         static let defaultThumnailImageName = "gamecontroller.fill"
     }
 
@@ -79,11 +79,11 @@ class gameListCollectionViewCell: UICollectionViewCell {
         rankBedge.isHidden = false
         switch rank {
         case 0:
-            rankBedge.image = UIImage(named: Constants.firstRankBadge)
+            rankBedge.image = UIImage(named: Constants.firstRankBadgeImageName)
         case 1:
-            rankBedge.image = UIImage(named: Constants.secondRankBadge)
+            rankBedge.image = UIImage(named: Constants.secondRankBadgeImageName)
         case 2:
-            rankBedge.image = UIImage(named: Constants.thirdRankBadge)
+            rankBedge.image = UIImage(named: Constants.thirdRankBadgeImageName)
         default:
             rankBedge.image = nil
         }
