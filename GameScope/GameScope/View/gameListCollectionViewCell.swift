@@ -44,9 +44,7 @@ class gameListCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 10
         return imageView
     }()
-
     private let InformationContainerView = UIView()
-
     private let gameTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: Constants.gameTitleLabelFontSize, weight: .semibold)
@@ -119,7 +117,6 @@ class gameListCollectionViewCell: UICollectionViewCell {
             make.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(Constants.rankBedgeInset)
             make.centerY.equalToSuperview()
         }
-
         InformationContainerView.snp.makeConstraints { make in
             make.leading.equalTo(gameThumbnailImageView.snp.trailing).offset(Constants.thumbnailAndInfoContainerInset)
             make.trailing.equalToSuperview()
