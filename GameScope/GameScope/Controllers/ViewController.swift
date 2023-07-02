@@ -8,12 +8,29 @@
 import UIKit
 import SnapKit
 
+enum ListType {
+    case popularity
+    case releaseDate
+}
+
 class ViewController: UIViewController {
 
+    // MARK: - Constants
+    private typealias DataSource = UICollectionViewDiffableDataSource<ListType, Game>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<ListType, Game>
+
+    // MARK: - Properties
+    private var listType: ListType = .popularity
+
+    // MARK: - UI Components
+
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
+    // MARK: - Public
+
+    // MARK: - Private
 
 }

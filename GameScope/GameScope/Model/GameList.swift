@@ -9,7 +9,7 @@ import Foundation
 
 typealias GameList = [Game]
 
-struct Game: Equatable {
+struct Game: Equatable, Hashable {
     let id: Int
     let title: String
     let thumbnail: String
