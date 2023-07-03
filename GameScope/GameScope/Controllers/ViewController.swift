@@ -13,7 +13,7 @@ enum ListType {
     case releaseDate
 }
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     // MARK: - Constants
     private typealias DataSource = UICollectionViewDiffableDataSource<ListType, Game>

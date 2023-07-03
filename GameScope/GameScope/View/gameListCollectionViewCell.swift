@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class gameListCollectionViewCell: UICollectionViewCell {
+final class gameListCollectionViewCell: UICollectionViewCell {
     // MARK: - Constants
     enum Constants {
         static let gameTitleLabelFontSize: CGFloat = 15
