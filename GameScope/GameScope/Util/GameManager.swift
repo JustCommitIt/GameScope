@@ -18,22 +18,29 @@ final class GameManager {
     // MARK: - Helper
     private let deserializer = JSONDesirializer()
     // MARK: - Properties
-    private var popularGames: GameListDTO?
-    private var latestGames: GameListDTO?
+    private var popularGames: GameList?
+    private var latestGames: GameList?
 
     // MARK: - LifeCycle
 
     // MARK: - Public
-    func dispatchPopGames() -> GameListDTO? {
-        if popularGames == nil {
-            popularGames = fetchGameList(of: .popGames)
+    func dispatchPopGames() -> GameList? {
+        guard popularGames == nil else { return popularGames }
+        guard let popularGamesDTO = fetchGameList(of: .popGames) else { return nil }
+
+        popularGames = popularGamesDTO.map { game in
+            game.convert()
         }
+
         return popularGames
     }
 
-    func dispatchLatestGames() -> GameListDTO? {
-        if latestGames == nil {
-            latestGames = fetchGameList(of: .latestGames)
+    func dispatchLatestGames() -> GameList? {
+        guard latestGames == nil else { return latestGames }
+        guard let popularGamesDTO = fetchGameList(of: .latestGames) else { return nil }
+
+        latestGames = popularGamesDTO.map { game in
+            game.convert()
         }
         return latestGames
     }

@@ -58,7 +58,7 @@ extension GameDTO {
     func convert() -> Game {
         return .init(id: id,
                      title: title,
-                     thumbnail: thumbnail,
+                     thumbnail: nil,
                      shortDescription: shortDescription)
     }
 }
