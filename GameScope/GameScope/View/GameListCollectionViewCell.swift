@@ -40,12 +40,14 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         imageView.image = nil
         return imageView
     }()
+    private let skeletonThumbnailImage = UIImage(systemName: Constants.defaultThumbnailImageName)
     private let gameThumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .systemGray6
         imageView.image = UIImage(systemName: Constants.defaultThumbnailImageName)
         imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         return imageView
     }()
     private let InformationContainerView = UIView()
@@ -80,14 +82,20 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: - Public
-    func configure(index: Int, game: Game) {
+    func configure(index: Int, game: Game, thumbnail: UIImage?) {
         gameIdNumber = game.id
         gameTitleLabel.text = game.title
         gameDescribsionLabel.text = game.shortDescription
-        if let thumbnail = game.thumbnail {
+        if let thumbnail {
+            gameThumbnailImageView.contentMode = .scaleAspectFill
             gameThumbnailImageView.image = thumbnail
         }
         setRankBedgeStyle(rank: index)
+    }
+
+    override func prepareForReuse() {
+        gameThumbnailImageView.contentMode = .scaleAspectFit
+        gameThumbnailImageView.image = skeletonThumbnailImage
     }
 
     // MARK: - Private
@@ -105,7 +113,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         case 2:
             rankBedge.image = UIImage(named: Constants.thirdRankBadgeImageName)
         default:
-            rankBedge.image = nil
+            rankBedge.isHidden = true
         }
     }
 

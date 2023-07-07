@@ -5,7 +5,12 @@
 //  Created by DONGWOOK SEO on 2023/07/02.
 //
 
-import Foundation
+import UIKit
+
+final class ImageCacheManager {
+    static let shared = NSCache<NSString, UIImage>()
+    private init() {}
+}
 
 final class GameManager {
 
@@ -17,6 +22,8 @@ final class GameManager {
 
     // MARK: - Helper
     private let deserializer = JSONDesirializer()
+    private let networkDispatcher = NetworkDispatcher()
+
     // MARK: - Properties
     private var popularGames: GameList?
     private var latestGames: GameList?
@@ -42,12 +49,35 @@ final class GameManager {
         latestGames = popularGamesDTO.map { game in
             game.convert()
         }
+
         return latestGames
+    }
+
+    func dispatchThumnail(of game: Game) async throws -> UIImage? {
+        let thumbnailImageURLString = game.thumbnail
+        let cacheKey = NSString(string: thumbnailImageURLString)
+        if let chachedImage = ImageCacheManager.shared.object(forKey: cacheKey) {
+            return chachedImage
+        }
+
+        guard let thumbnailURL = URL(string: thumbnailImageURLString) else { throw NetworkError.invalidURL }
+        let urlRequest = URLRequest(url: thumbnailURL)
+
+        let imageResult = try await networkDispatcher.performRequest(urlRequest)
+
+        switch imageResult {
+        case .success(let data):
+            guard let thumbnailImage = UIImage(data: data) else { throw NetworkError.emptyData}
+            ImageCacheManager.shared.setObject(thumbnailImage, forKey: cacheKey)
+            return thumbnailImage
+        case .failure(let error):
+            print(error.errorDescription)
+            return nil
+        }
     }
 
     // MARK: - Private
     private func fetchGameList(of listKind: dummyConstants) -> GameListDTO? {
-        print(#function)
         guard let dataUrl = Bundle.main.url(
             forResource: listKind.rawValue,
             withExtension: "json") else { return nil }
@@ -56,7 +86,6 @@ final class GameManager {
             let data = try Data(contentsOf: dataUrl)
             let decodedData = try deserializer.deserialize(type: GameListDTO.self, data: data)
             guard let gameList = decodedData as? GameListDTO else { return nil }
-            print("hey")
             return gameList
         }
         catch {

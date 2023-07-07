@@ -113,7 +113,10 @@ extension ViewController {
                 for: indexPath
             ) as? GameListCollectionViewCell
 
-            cell?.configure(index: indexPath.item, game: game)
+            Task {
+                let thumbnailImage = try await self.gameManager.dispatchThumnail(of:game)
+                cell?.configure(index: indexPath.item, game: game, thumbnail: thumbnailImage)
+            }
 
             return cell
         }
