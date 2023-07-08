@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  GameListCollectionViewController.swift
 //  GameScope
 //
 //  Created by DONGWOOK SEO on 2023/06/29.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class ViewController: UIViewController {
+final class GameListCollectionViewController: UIViewController {
 
     enum ListType {
         case popularity
@@ -80,7 +80,7 @@ final class ViewController: UIViewController {
 
 }
 
-extension ViewController {
+extension GameListCollectionViewController {
 
     private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { section, layoutEnvironment in

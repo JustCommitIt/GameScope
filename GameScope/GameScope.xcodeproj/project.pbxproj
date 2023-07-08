@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F14B01762A513FEF00D43B1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14B01752A513FEF00D43B1D /* ViewController.swift */; };
+		F14B01762A513FEF00D43B1D /* GameListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14B01752A513FEF00D43B1D /* GameListCollectionViewController.swift */; };
 		F14B017B2A5195DD00D43B1D /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14B017A2A5195DD00D43B1D /* GameManager.swift */; };
 		F14B017D2A52AF2B00D43B1D /* JSONDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14B017C2A52AF2B00D43B1D /* JSONDeserializer.swift */; };
 		F14B01882A52D99A00D43B1D /* latest-games.json in Resources */ = {isa = PBXBuildFile; fileRef = F14B01872A52D99A00D43B1D /* latest-games.json */; };
@@ -55,7 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F14B01752A513FEF00D43B1D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = GameScope/Controllers/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		F14B01752A513FEF00D43B1D /* GameListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameListCollectionViewController.swift; path = GameScope/Controllers/GameListCollectionViewController.swift; sourceTree = SOURCE_ROOT; };
 		F14B017A2A5195DD00D43B1D /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		F14B017C2A52AF2B00D43B1D /* JSONDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDeserializer.swift; sourceTree = "<group>"; };
 		F14B01872A52D99A00D43B1D /* latest-games.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = "latest-games.json"; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		F14B01782A51727100D43B1D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F14B01752A513FEF00D43B1D /* ViewController.swift */,
+				F14B01752A513FEF00D43B1D /* GameListCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -340,7 +340,7 @@
 				F15550722A4EDD0400832E92 /* GameListCollectionViewCell.swift in Sources */,
 				F1E20C732A4D6E1B00772B80 /* AppDelegate.swift in Sources */,
 				F14B017B2A5195DD00D43B1D /* GameManager.swift in Sources */,
-				F14B01762A513FEF00D43B1D /* ViewController.swift in Sources */,
+				F14B01762A513FEF00D43B1D /* GameListCollectionViewController.swift in Sources */,
 				F6B45FAE2A4E752900F1D0DB /* GameDetailDTO.swift in Sources */,
 				F6B45FB02A4E768B00F1D0DB /* MinimumSystemRequirementsDTO.swift in Sources */,
 				F14B01952A56655000D43B1D /* URLResponse.swift in Sources */,
