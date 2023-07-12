@@ -11,14 +11,14 @@ import SnapKit
 class DetailViewController: UIViewController, UICollectionViewDelegate {
     static let headerElementKind = "header-element-kind"
 
-    enum SectionKind: String, CaseIterable {
+    enum Section: String, CaseIterable {
         case thumbnail
         case about = "About"
         case information = "Information"
         case screenshots = "ScreenShots"
     }
 
-    var dataSource: UICollectionViewDiffableDataSource<SectionKind, GameDetail>! = nil
+    var dataSource: UICollectionViewDiffableDataSource<Section, GameDetail>! = nil
     var detailCollectionView: UICollectionView! = nil
 
     var detail: GameDetail?
@@ -50,9 +50,9 @@ extension DetailViewController {
     }
 
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<SectionKind, GameDetail>(collectionView: detailCollectionView) {
+        dataSource = UICollectionViewDiffableDataSource<Section, GameDetail>(collectionView: detailCollectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: GameDetail) -> UICollectionViewCell? in
-            let sectionType = SectionKind.allCases[indexPath.section]
+            let sectionType = Section.allCases[indexPath.section]
             switch sectionType {
             case .thumbnail:
                 return nil
@@ -70,14 +70,14 @@ extension DetailViewController {
             guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView else {
                 fatalError("Cannot create header view")
             }
-            supplementaryView.label.text = SectionKind.allCases[indexPath.section].rawValue
+            supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
             return supplementaryView
         }
     }
 
     func generateLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let sectionLayoutKind = SectionKind.allCases[sectionIndex]
+            let sectionLayoutKind = Section.allCases[sectionIndex]
             switch sectionLayoutKind {
             case .thumbnail:
                 return nil
