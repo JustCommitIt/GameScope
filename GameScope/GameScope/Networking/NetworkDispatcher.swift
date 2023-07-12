@@ -8,6 +8,7 @@
 import Foundation
 
 struct NetworkDispatcher {
+    
     typealias NetworkResult = Result<Data, NetworkError>
 
     func performRequest(_ urlRequest: URLRequest?) async throws -> NetworkResult {
