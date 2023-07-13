@@ -19,9 +19,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
         case screenshots = "ScreenShots"
     }
 
-    private typealias DataSource = UICollectionViewDiffableDataSource<Section, GameDetail>
-
-    private lazy var dataSource = configureDataSource()
     private lazy var detailCollectionView = {
         let collectionView = UICollectionView(
             frame: view.bounds,
@@ -55,37 +52,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
 
 extension DetailViewController {
 
-    private func configureDataSource() -> DataSource {
-        let dataSource = DataSource(collectionView: detailCollectionView) { collectionView, indexPath, item in
-            let sectionType = Section.allCases[indexPath.section]
-            switch sectionType {
-            case .thumbnail:
-                return nil
-            case .about:
-                return nil
-            case .information:
-                return nil
-            case .screenshots:
-                return nil
-            }
-        }
-
-        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
-            guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: HeaderView.reuseIdentifier,
-                for: indexPath
-            ) as? HeaderView else {
-                fatalError("Cannot create header view")
-            }
-            supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
-            return supplementaryView
-        }
-
-        return dataSource
-    }
-
-    func generateLayout() -> UICollectionViewLayout {
+    private func generateLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
             let sectionLayoutKind = Section.allCases[sectionIndex]
             switch sectionLayoutKind {
@@ -100,6 +67,28 @@ extension DetailViewController {
             }
         }
         return layout
+    }
+
+}
+
+extension DetailViewController: UICollectionViewDataSource {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        Section.allCases.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch Section.allCases[section] {
+        default:
+            return 0
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch Section.allCases[indexPath.section] {
+        default:
+            return UICollectionViewCell()
+        }
     }
 
 }
