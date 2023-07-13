@@ -10,7 +10,7 @@ import SnapKit
 
 final class GameListCollectionViewController: UIViewController {
 
-    enum ListType {
+    enum ListType: CaseIterable {
         case popularity
         case releaseDate
     }
@@ -34,6 +34,15 @@ final class GameListCollectionViewController: UIViewController {
     }
 
     // MARK: - UI Components
+    private lazy var segmentControl: UISegmentedControl = {
+        let segmentItems = ListType.allCases.map { String(describing: $0) }
+        let segmentControl = UISegmentedControl(items: segmentItems)
+        segmentControl.selectedSegmentIndex = .zero
+        segmentControl.backgroundColor = .white
+        segmentControl.selectedSegmentTintColor = .cyan
+        return segmentControl
+    }()
+
     private lazy var gameListCollectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -41,7 +50,7 @@ final class GameListCollectionViewController: UIViewController {
         collectionView.register(
             GameListCollectionViewCell.self,
             forCellWithReuseIdentifier: GameListCollectionViewCell.identifier)
-
+        collectionView.clipsToBounds = false
         return collectionView
     }()
 
@@ -68,12 +77,19 @@ final class GameListCollectionViewController: UIViewController {
 
     private func setUI() {
         view.addSubview(gameListCollectionView)
+        view.addSubview(segmentControl)
         setUIlayout()
     }
 
     private func setUIlayout() {
-        gameListCollectionView.snp.makeConstraints { make in
+        segmentControl.snp.makeConstraints { make in
+            make.height.equalTo(30)
+            make.width.equalToSuperview().inset(40)
             make.top.equalTo(view.safeAreaLayoutGuide)
+            make.centerX.equalToSuperview()
+        }
+        gameListCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(segmentControl.snp.bottom).offset(20)
             make.leading.bottom.trailing.equalToSuperview()
         }
     }
