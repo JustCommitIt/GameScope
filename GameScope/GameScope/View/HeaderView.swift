@@ -16,7 +16,8 @@ class HeaderView: UICollectionReusableView {
         addSubview(label)
 
         label.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.bottom.equalToSuperview()
         }
 
         label.font = .preferredFont(forTextStyle: .title2)
