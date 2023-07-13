@@ -24,10 +24,9 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
             frame: view.bounds,
             collectionViewLayout: generateLayout())
 
-        view.addSubview(collectionView)
-
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
+        collectionView.dataSource = self
         collectionView.register(
             HeaderView.self,
             forSupplementaryViewOfKind: DetailViewController.headerElementKind,
@@ -46,6 +45,8 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = detail?.title
+
+        view.addSubview(detailCollectionView)
     }
 
 }
