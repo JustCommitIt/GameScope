@@ -98,6 +98,7 @@
 		F15550702A4EDCEC00832E92 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F6B45FDE2A57A10D00F1D0DB /* HeaderView.swift */,
 				F15550712A4EDD0400832E92 /* gameListCollectionViewCell.swift */,
 			);
 			path = View;
@@ -106,6 +107,7 @@
 		F15550732A4EE20F00832E92 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F6B45FD72A500F5200F1D0DB /* DetailViewController.swift */,
 				F14B01752A513FEF00D43B1D /* ViewController.swift */,
 			);
 			path = Controller;
@@ -134,8 +136,6 @@
 			children = (
 				F1E20C722A4D6E1B00772B80 /* AppDelegate.swift */,
 				F1E20C742A4D6E1B00772B80 /* SceneDelegate.swift */,
-				F6B45FD72A500F5200F1D0DB /* DetailViewController.swift */,
-				F6B45FDE2A57A10D00F1D0DB /* HeaderView.swift */,
 				F1E20C782A4D6E1B00772B80 /* Main.storyboard */,
 				F1E20C7B2A4D6E1C00772B80 /* Assets.xcassets */,
 				F1E20C7D2A4D6E1C00772B80 /* LaunchScreen.storyboard */,
