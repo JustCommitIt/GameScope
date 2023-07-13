@@ -82,15 +82,18 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: - Public
-    func configure(index: Int, game: Game, thumbnail: UIImage?) {
+    func configure(index: Int, game: Game) {
         gameIdNumber = game.id
         gameTitleLabel.text = game.title
         gameDescribsionLabel.text = game.shortDescription
+        setRankBedgeStyle(rank: index)
+    }
+
+    func updateThumbnail(with  thumbnail: UIImage?) {
         if let thumbnail {
             gameThumbnailImageView.contentMode = .scaleAspectFill
             gameThumbnailImageView.image = thumbnail
         }
-        setRankBedgeStyle(rank: index)
     }
 
     override func prepareForReuse() {

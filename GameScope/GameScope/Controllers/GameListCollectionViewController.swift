@@ -115,8 +115,9 @@ extension GameListCollectionViewController {
 
             Task {
                 let thumbnailImage = try await self.gameManager.dispatchThumnail(of:game)
-                cell?.configure(index: indexPath.item, game: game, thumbnail: thumbnailImage)
+                cell?.updateThumbnail(with: thumbnailImage)
             }
+            cell?.configure(index: indexPath.item, game: game)
 
             return cell
         }
