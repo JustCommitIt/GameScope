@@ -8,13 +8,17 @@
 import UIKit
 import SnapKit
 
-class gameListCollectionViewCell: UICollectionViewCell {
+final class GameListCollectionViewCell: UICollectionViewCell {
+
+    static let identifier = String(describing: GameListCollectionViewCell.self)
+
     // MARK: - Constants
     enum Constants {
         static let gameTitleLabelFontSize: CGFloat = 15
         static let gameDescribsionLabelFontSize: CGFloat = 12
         static let squareThumbnailImageSize: CGFloat = 72
         static let squareBadgeImageSize: CGFloat = 26
+        static let sideLayoutGuideInset: CGFloat = 24
         static let labelNumberOfLines: Int = 2
 
         static let rankBedgeInset: CGFloat = 6
@@ -36,15 +40,17 @@ class gameListCollectionViewCell: UICollectionViewCell {
         imageView.image = nil
         return imageView
     }()
+    private let skeletonThumbnailImage = UIImage(systemName: Constants.defaultThumbnailImageName)
     private let gameThumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .systemGray6
         imageView.image = UIImage(systemName: Constants.defaultThumbnailImageName)
         imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         return imageView
     }()
-    private let InformationContainerView = UIView()
+    private let informationContainerView = UIView()
     private let gameTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: Constants.gameTitleLabelFontSize, weight: .semibold)
@@ -59,6 +65,12 @@ class gameListCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
+    private let cellSeperator: UIView = {
+        let view = UIView()
+        view.backgroundColor = .separator
+        return view
+    }()
+
     // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,14 +82,23 @@ class gameListCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: - Public
-    func configure(index: Int, game: Game, thumbnail: UIImage?) {
+    func configure(index: Int, game: Game) {
         gameIdNumber = game.id
         gameTitleLabel.text = game.title
         gameDescribsionLabel.text = game.shortDescription
+        setRankBedgeStyle(rank: index)
+    }
+
+    func updateThumbnail(with thumbnail: UIImage?) {
         if let thumbnail {
+            gameThumbnailImageView.contentMode = .scaleAspectFill
             gameThumbnailImageView.image = thumbnail
         }
-        setRankBedgeStyle(rank: index)
+    }
+
+    override func prepareForReuse() {
+        gameThumbnailImageView.contentMode = .scaleAspectFit
+        gameThumbnailImageView.image = skeletonThumbnailImage
     }
 
     // MARK: - Private
@@ -95,16 +116,16 @@ class gameListCollectionViewCell: UICollectionViewCell {
         case 2:
             rankBedge.image = UIImage(named: Constants.thirdRankBadgeImageName)
         default:
-            rankBedge.image = nil
+            rankBedge.isHidden = true
         }
     }
 
     private func setupLayout() {
-        InformationContainerView.addSubview(gameTitleLabel)
-        InformationContainerView.addSubview(gameDescribsionLabel)
-        
+        informationContainerView.addSubview(gameTitleLabel)
+        informationContainerView.addSubview(gameDescribsionLabel)
         contentView.addSubview(gameThumbnailImageView)
-        contentView.addSubview(InformationContainerView)
+        contentView.addSubview(informationContainerView)
+        contentView.addSubview(cellSeperator)
         contentView.addSubview(rankBedge)
 
         rankBedge.snp.makeConstraints { make in
@@ -113,13 +134,13 @@ class gameListCollectionViewCell: UICollectionViewCell {
             make.leading.equalTo(gameThumbnailImageView).offset(-Constants.rankBedgeInset)
         }
         gameThumbnailImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(contentView.snp.height)
-            make.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(Constants.rankBedgeInset)
+            make.width.height.equalTo(Constants.squareThumbnailImageSize)
+            make.leading.equalTo(contentView).offset(Constants.sideLayoutGuideInset)
             make.centerY.equalToSuperview()
         }
-        InformationContainerView.snp.makeConstraints { make in
+        informationContainerView.snp.makeConstraints { make in
             make.leading.equalTo(gameThumbnailImageView.snp.trailing).offset(Constants.thumbnailAndInfoContainerInset)
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().inset(Constants.sideLayoutGuideInset)
             make.centerY.equalToSuperview()
         }
         gameTitleLabel.snp.makeConstraints { make in
@@ -128,6 +149,12 @@ class gameListCollectionViewCell: UICollectionViewCell {
         gameDescribsionLabel.snp.makeConstraints { make in
             make.top.equalTo(gameTitleLabel.snp.bottom).offset(Constants.TitleAndDescribsionInset)
             make.leading.bottom.trailing.equalToSuperview()
+        }
+        cellSeperator.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.trailing.equalToSuperview().inset(Constants.sideLayoutGuideInset)
+            make.leading.equalTo(informationContainerView)
+            make.bottom.equalToSuperview()
         }
     }
 
