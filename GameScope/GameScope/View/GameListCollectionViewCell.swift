@@ -50,7 +50,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
-    private let InformationContainerView = UIView()
+    private let informationContainerView = UIView()
     private let gameTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: Constants.gameTitleLabelFontSize, weight: .semibold)
@@ -121,10 +121,10 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupLayout() {
-        InformationContainerView.addSubview(gameTitleLabel)
-        InformationContainerView.addSubview(gameDescribsionLabel)
+        informationContainerView.addSubview(gameTitleLabel)
+        informationContainerView.addSubview(gameDescribsionLabel)
         contentView.addSubview(gameThumbnailImageView)
-        contentView.addSubview(InformationContainerView)
+        contentView.addSubview(informationContainerView)
         contentView.addSubview(cellSeperator)
         contentView.addSubview(rankBedge)
 
@@ -138,7 +138,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
             make.leading.equalTo(contentView).offset(Constants.sideLayoutGuideInset)
             make.centerY.equalToSuperview()
         }
-        InformationContainerView.snp.makeConstraints { make in
+        informationContainerView.snp.makeConstraints { make in
             make.leading.equalTo(gameThumbnailImageView.snp.trailing).offset(Constants.thumbnailAndInfoContainerInset)
             make.trailing.equalToSuperview().inset(Constants.sideLayoutGuideInset)
             make.centerY.equalToSuperview()
@@ -153,7 +153,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         cellSeperator.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.trailing.equalToSuperview().inset(Constants.sideLayoutGuideInset)
-            make.leading.equalTo(InformationContainerView)
+            make.leading.equalTo(informationContainerView)
             make.bottom.equalToSuperview()
         }
     }
