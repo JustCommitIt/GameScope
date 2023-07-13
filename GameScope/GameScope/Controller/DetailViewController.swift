@@ -31,7 +31,9 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
             HeaderView.self,
             forSupplementaryViewOfKind: DetailViewController.headerElementKind,
             withReuseIdentifier: HeaderView.reuseIdentifier)
-
+        collectionView.register(
+            GameDetailInformationCell.self,
+            forCellWithReuseIdentifier: GameDetailInformationCell.reuseIdentifier)
         return collectionView
     }()
 
@@ -62,7 +64,7 @@ extension DetailViewController {
             case .about:
                 return nil
             case .information:
-                return nil
+                return self.generateInformationLayout()
             case .screenshots:
                 return nil
             }
@@ -70,6 +72,31 @@ extension DetailViewController {
         return layout
     }
 
+    private func generateInformationLayout() -> NSCollectionLayoutSection {
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: DetailViewController.headerElementKind,
+            alignment: .top)
+
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.9),
+            heightDimension: .fractionalWidth(0.4))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [sectionHeader]
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+
+        return section
+    }
 }
 
 extension DetailViewController: UICollectionViewDataSource {
@@ -80,6 +107,8 @@ extension DetailViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch Section.allCases[section] {
+        case .information:
+            return 1
         default:
             return 0
         }
@@ -87,9 +116,27 @@ extension DetailViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch Section.allCases[indexPath.section] {
+        case .information:
+            guard let detail = detail,
+                  let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: GameDetailInformationCell.reuseIdentifier,
+                    for: indexPath) as? GameDetailInformationCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(information: detail)
+            return cell
         default:
             return UICollectionViewCell()
         }
     }
 
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == DetailViewController.headerElementKind,
+           let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView {
+            view.label.text = Section.allCases[indexPath.section].rawValue
+            return view
+        }
+
+        return UICollectionReusableView()
+    }
 }
