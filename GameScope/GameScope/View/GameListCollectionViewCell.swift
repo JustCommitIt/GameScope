@@ -89,7 +89,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         setRankBedgeStyle(rank: index)
     }
 
-    func updateThumbnail(with  thumbnail: UIImage?) {
+    func updateThumbnail(with thumbnail: UIImage?) {
         if let thumbnail {
             gameThumbnailImageView.contentMode = .scaleAspectFill
             gameThumbnailImageView.image = thumbnail
