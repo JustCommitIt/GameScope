@@ -63,7 +63,7 @@ final class GameListCollectionViewController: UIViewController {
     private lazy var tagFilterButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "FilterButton"), for: .normal)
-        button.addTarget(self, action: #selector(subjectButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tagFilterButtonTapped), for: .touchUpInside)
         button.titleLabel?.font = .systemFont(ofSize: Constants.subjectButtonFontSize, weight: .heavy)
         return button
     }()
@@ -71,6 +71,7 @@ final class GameListCollectionViewController: UIViewController {
     private lazy var segmentControl: UISegmentedControl = {
         let segmentItems = ListType.allCases.map { String(describing: $0) }
         let segmentControl = UISegmentedControl(items: segmentItems)
+        segmentControl.addTarget(self, action: #selector(listTypeChanged), for: .valueChanged)
         segmentControl.selectedSegmentIndex = .zero
         segmentControl.backgroundColor = .white
         segmentControl.selectedSegmentTintColor = .init(hex: "9FEBD9")
@@ -145,9 +146,26 @@ final class GameListCollectionViewController: UIViewController {
         }
     }
 
-    @objc
-    private func subjectButtonTapped() {
+    @objc private func subjectButtonTapped() {
         print(#function)
+    }
+
+    @objc private func tagFilterButtonTapped() {
+        print(#function)
+    }
+
+    @objc private func listTypeChanged() {
+        let selectedIndex = segmentControl.selectedSegmentIndex
+        switch selectedIndex {
+        case .zero:
+            guard let popGames = gameManager.dispatchPopGames() else { return }
+            games = popGames
+        case 1:
+            guard let latestGames = gameManager.dispatchLatestGames() else { return }
+            games = latestGames
+        default:
+            return
+        }
     }
 
 }
@@ -200,7 +218,7 @@ extension GameListCollectionViewController {
         var snapShot = Snapshot()
         snapShot.appendSections([.main])
         snapShot.appendItems(games)
-        dataSource.apply(snapShot)
+        dataSource.apply(snapShot,animatingDifferences: false )
     }
 
 }
