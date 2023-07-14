@@ -20,6 +20,13 @@ final class GameListCollectionViewController: UIViewController {
     }
 
     // MARK: - Constants
+    enum Constants {
+        static let additionalSafeAreaTopInsets: CGFloat = 70
+        static let sideLayoutGuideInset: CGFloat = 24
+        static let subjectButtonFontSize: CGFloat = 30
+        static let seperatorLineViewTopOffset: CGFloat = 5
+    }
+
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Game>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Game>
 
@@ -34,12 +41,34 @@ final class GameListCollectionViewController: UIViewController {
     }
 
     // MARK: - UI Components
+    private lazy var subjectButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("ALL", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(subjectButtonTapped), for: .touchUpInside)
+        button.titleLabel?.font = .systemFont(ofSize: Constants.subjectButtonFontSize, weight: .heavy)
+        return button
+    }()
+
+    private lazy var seperatorLineView: UIView = {
+        let seperatorView = UIView()
+        seperatorView.backgroundColor = .separator
+        seperatorView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+        }
+        return seperatorView
+    }()
     private lazy var segmentControl: UISegmentedControl = {
         let segmentItems = ListType.allCases.map { String(describing: $0) }
         let segmentControl = UISegmentedControl(items: segmentItems)
         segmentControl.selectedSegmentIndex = .zero
         segmentControl.backgroundColor = .white
         segmentControl.selectedSegmentTintColor = .init(hex: "9FEBD9")
+
+        for index in .zero...segmentItems.count-1 {
+            segmentControl.setWidth(view.frame.width*0.4, forSegmentAt: index)
+        }
+
         return segmentControl
     }()
 
@@ -61,8 +90,6 @@ final class GameListCollectionViewController: UIViewController {
         setUI()
     }
 
-    // MARK: - Public
-
     // MARK: - Private
     private func checkListType() {
         switch listType {
@@ -77,21 +104,35 @@ final class GameListCollectionViewController: UIViewController {
 
     private func setUI() {
         view.addSubview(gameListCollectionView)
-        view.addSubview(segmentControl)
+        navigationController?.view.addSubview(subjectButton)
+        navigationController?.view.addSubview(seperatorLineView)
+        navigationItem.titleView = segmentControl
+        navigationController?.additionalSafeAreaInsets.top = Constants.additionalSafeAreaTopInsets
         setUIlayout()
     }
 
     private func setUIlayout() {
-        segmentControl.snp.makeConstraints { make in
-            make.height.equalTo(30)
-            make.width.equalToSuperview().inset(40)
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.centerX.equalToSuperview()
+        guard let navigationController else { return }
+
+        subjectButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(Constants.sideLayoutGuideInset)
         }
+        seperatorLineView.snp.makeConstraints { make in
+            make.width.equalToSuperview().inset(Constants.sideLayoutGuideInset)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(subjectButton.snp.bottom).offset(Constants.seperatorLineViewTopOffset)
+            make.bottom.equalTo(navigationController.navigationBar.snp.top)
+        }
+
         gameListCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.bottom.trailing.equalToSuperview()
         }
+    }
+
+    @objc
+    private func subjectButtonTapped() {
+        print(#function)
     }
 
 }
