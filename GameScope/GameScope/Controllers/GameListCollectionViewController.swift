@@ -58,6 +58,7 @@ final class GameListCollectionViewController: UIViewController {
         }
         return seperatorView
     }()
+    
     private lazy var segmentControl: UISegmentedControl = {
         let segmentItems = ListType.allCases.map { String(describing: $0) }
         let segmentControl = UISegmentedControl(items: segmentItems)
