@@ -39,7 +39,7 @@ final class GameListCollectionViewController: UIViewController {
         let segmentControl = UISegmentedControl(items: segmentItems)
         segmentControl.selectedSegmentIndex = .zero
         segmentControl.backgroundColor = .white
-        segmentControl.selectedSegmentTintColor = .cyan
+        segmentControl.selectedSegmentTintColor = .init(hex: "9FEBD9")
         return segmentControl
     }()
 
@@ -89,7 +89,7 @@ final class GameListCollectionViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         gameListCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(segmentControl.snp.bottom).offset(20)
+            make.top.equalToSuperview()
             make.leading.bottom.trailing.equalToSuperview()
         }
     }
