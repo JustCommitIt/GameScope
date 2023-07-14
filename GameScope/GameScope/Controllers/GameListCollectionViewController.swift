@@ -25,6 +25,7 @@ final class GameListCollectionViewController: UIViewController {
         static let sideLayoutGuideInset: CGFloat = 24
         static let subjectButtonFontSize: CGFloat = 30
         static let seperatorLineViewTopOffset: CGFloat = 5
+        static let tagFilterButtonTrailingBottomInset: CGFloat = 40
     }
 
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Game>
@@ -58,7 +59,15 @@ final class GameListCollectionViewController: UIViewController {
         }
         return seperatorView
     }()
-    
+
+    private lazy var tagFilterButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "FilterButton"), for: .normal)
+        button.addTarget(self, action: #selector(subjectButtonTapped), for: .touchUpInside)
+        button.titleLabel?.font = .systemFont(ofSize: Constants.subjectButtonFontSize, weight: .heavy)
+        return button
+    }()
+
     private lazy var segmentControl: UISegmentedControl = {
         let segmentItems = ListType.allCases.map { String(describing: $0) }
         let segmentControl = UISegmentedControl(items: segmentItems)
@@ -108,6 +117,7 @@ final class GameListCollectionViewController: UIViewController {
         navigationController?.view.addSubview(subjectButton)
         navigationController?.view.addSubview(seperatorLineView)
         navigationItem.titleView = segmentControl
+        view.addSubview(tagFilterButton)
         navigationController?.additionalSafeAreaInsets.top = Constants.additionalSafeAreaTopInsets
         setUIlayout()
     }
@@ -128,6 +138,10 @@ final class GameListCollectionViewController: UIViewController {
         gameListCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.bottom.trailing.equalToSuperview()
+        }
+
+        tagFilterButton.snp.makeConstraints { make in
+            make.trailing.bottom.equalToSuperview().inset(Constants.tagFilterButtonTrailingBottomInset)
         }
     }
 
