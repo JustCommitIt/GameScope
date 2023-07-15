@@ -21,7 +21,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         static let sideLayoutGuideInset: CGFloat = 24
         static let labelNumberOfLines: Int = 2
 
-        static let rankBedgeInset: CGFloat = 6
+        static let bedgeInset: CGFloat = 6
         static let thumbnailAndInfoContainerInset: CGFloat = 10
         static let TitleAndDescribsionInset: CGFloat = 4
 
@@ -86,7 +86,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         gameIdNumber = game.id
         gameTitleLabel.text = game.title
         gameDescribsionLabel.text = game.shortDescription
-        setRankBedgeStyle(rank: index)
+        setBedgeStyle(rank: index)
     }
 
     func updateThumbnail(with thumbnail: UIImage?) {
@@ -102,7 +102,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: - Private
-    private func setRankBedgeStyle(rank: Int) {
+    private func setBedgeStyle(rank: Int) {
         guard rank < 3 else {
             bedge.isHidden = true
             return
@@ -130,8 +130,8 @@ final class GameListCollectionViewCell: UICollectionViewCell {
 
         bedge.snp.makeConstraints { make in
             make.width.height.equalTo(Constants.squareBadgeImageSize)
-            make.top.equalTo(gameThumbnailImageView).offset(-Constants.rankBedgeInset)
-            make.leading.equalTo(gameThumbnailImageView).offset(-Constants.rankBedgeInset)
+            make.top.equalTo(gameThumbnailImageView).offset(-Constants.bedgeInset)
+            make.leading.equalTo(gameThumbnailImageView).offset(-Constants.bedgeInset)
         }
         gameThumbnailImageView.snp.makeConstraints { make in
             make.width.height.equalTo(Constants.squareThumbnailImageSize)

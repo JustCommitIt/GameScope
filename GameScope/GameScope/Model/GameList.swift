@@ -15,5 +15,6 @@ struct Game: Equatable, Hashable {
     let title: String
     let thumbnail: String
     let shortDescription: String
+    let releaseDate: String
 
 }
