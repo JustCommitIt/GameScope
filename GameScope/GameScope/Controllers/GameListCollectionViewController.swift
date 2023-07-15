@@ -10,7 +10,7 @@ import SnapKit
 
 final class GameListCollectionViewController: UIViewController {
 
-    enum ListType: CaseIterable {
+    enum ListSortingType: CaseIterable {
         case popularity
         case releaseDate
     }
@@ -32,7 +32,7 @@ final class GameListCollectionViewController: UIViewController {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Game>
 
     // MARK: - Properties
-    private var listType: ListType = .popularity
+    private var listSortingType: ListSortingType = .popularity
     private var gameManager = GameManager()
     private lazy var dataSource: DataSource = configureDataSource()
     private var games: GameList = [] {
@@ -69,7 +69,7 @@ final class GameListCollectionViewController: UIViewController {
     }()
 
     private lazy var segmentControl: UISegmentedControl = {
-        let segmentItems = ListType.allCases.map { String(describing: $0) }
+        let segmentItems = ListSortingType.allCases.map { String(describing: $0) }
         let segmentControl = UISegmentedControl(items: segmentItems)
         segmentControl.addTarget(self, action: #selector(listTypeChanged), for: .valueChanged)
         segmentControl.selectedSegmentIndex = .zero
@@ -103,7 +103,7 @@ final class GameListCollectionViewController: UIViewController {
 
     // MARK: - Private
     private func checkListType() {
-        switch listType {
+        switch listSortingType {
         case .popularity:
             guard let list = gameManager.dispatchPopGames() else { return }
             games = list

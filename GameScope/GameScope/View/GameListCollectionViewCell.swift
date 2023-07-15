@@ -35,7 +35,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     private var gameIdNumber: Int?
 
     // MARK: - UI Components
-    private let rankBedge: UIImageView = {
+    private let bedge: UIImageView = {
         let imageView = UIImageView()
         imageView.image = nil
         return imageView
@@ -104,19 +104,19 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     // MARK: - Private
     private func setRankBedgeStyle(rank: Int) {
         guard rank < 3 else {
-            rankBedge.isHidden = true
+            bedge.isHidden = true
             return
         }
-        rankBedge.isHidden = false
+        bedge.isHidden = false
         switch rank {
         case 0:
-            rankBedge.image = UIImage(named: Constants.firstRankBadgeImageName)
+            bedge.image = UIImage(named: Constants.firstRankBadgeImageName)
         case 1:
-            rankBedge.image = UIImage(named: Constants.secondRankBadgeImageName)
+            bedge.image = UIImage(named: Constants.secondRankBadgeImageName)
         case 2:
-            rankBedge.image = UIImage(named: Constants.thirdRankBadgeImageName)
+            bedge.image = UIImage(named: Constants.thirdRankBadgeImageName)
         default:
-            rankBedge.isHidden = true
+            bedge.isHidden = true
         }
     }
 
@@ -126,9 +126,9 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(gameThumbnailImageView)
         contentView.addSubview(informationContainerView)
         contentView.addSubview(cellSeperator)
-        contentView.addSubview(rankBedge)
+        contentView.addSubview(bedge)
 
-        rankBedge.snp.makeConstraints { make in
+        bedge.snp.makeConstraints { make in
             make.width.height.equalTo(Constants.squareBadgeImageSize)
             make.top.equalTo(gameThumbnailImageView).offset(-Constants.rankBedgeInset)
             make.leading.equalTo(gameThumbnailImageView).offset(-Constants.rankBedgeInset)
