@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-final class GameListCollectionViewController: UIViewController {
+enum ListSortingType: CaseIterable {
+    case popularity
+    case releaseDate
+}
 
-    enum ListSortingType: CaseIterable {
-        case popularity
-        case releaseDate
-    }
+final class GameListCollectionViewController: UIViewController {
 
     enum Section {
         case main
@@ -32,7 +32,7 @@ final class GameListCollectionViewController: UIViewController {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Game>
 
     // MARK: - Properties
-    private var listSortingType: ListSortingType = .popularity
+    private var currentListSortingType: ListSortingType = .popularity
     private var gameManager = GameManager()
     private lazy var dataSource: DataSource = configureDataSource()
     private var games: GameList = [] {
@@ -103,7 +103,7 @@ final class GameListCollectionViewController: UIViewController {
 
     // MARK: - Private
     private func checkListType() {
-        switch listSortingType {
+        switch currentListSortingType {
         case .popularity:
             guard let list = gameManager.dispatchPopGames() else { return }
             games = list
@@ -158,9 +158,11 @@ final class GameListCollectionViewController: UIViewController {
         let selectedIndex = segmentControl.selectedSegmentIndex
         switch selectedIndex {
         case .zero:
+            currentListSortingType = .popularity
             guard let popGames = gameManager.dispatchPopGames() else { return }
             games = popGames
         case 1:
+            currentListSortingType = .releaseDate
             guard let latestGames = gameManager.dispatchLatestGames() else { return }
             games = latestGames
         default:
@@ -207,7 +209,7 @@ extension GameListCollectionViewController {
                 let thumbnailImage = try await self.gameManager.dispatchThumnail(of:game)
                 cell?.updateThumbnail(with: thumbnailImage)
             }
-            cell?.configure(index: indexPath.item, game: game)
+            cell?.configure(index: indexPath.item, game: game, listSortingType: self.currentListSortingType)
 
             return cell
         }

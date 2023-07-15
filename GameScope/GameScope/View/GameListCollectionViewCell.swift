@@ -21,13 +21,14 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         static let sideLayoutGuideInset: CGFloat = 24
         static let labelNumberOfLines: Int = 2
 
-        static let bedgeInset: CGFloat = 6
+        static let badgeInset: CGFloat = 6
         static let thumbnailAndInfoContainerInset: CGFloat = 10
         static let TitleAndDescribsionInset: CGFloat = 4
 
-        static let firstRankBadgeImageName = "RankBedgeGold"
-        static let secondRankBadgeImageName = "RankBedgeSilver"
-        static let thirdRankBadgeImageName = "RankBedgeBronze"
+        static let firstRankBadgeImageName = "RankBadgeGold"
+        static let secondRankBadgeImageName = "RankBadgeSilver"
+        static let thirdRankBadgeImageName = "RankBadgeBronze"
+        static let newBadgeImageName = "NewBadge"
         static let defaultThumbnailImageName = "gamecontroller.fill"
     }
 
@@ -35,7 +36,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     private var gameIdNumber: Int?
 
     // MARK: - UI Components
-    private let bedge: UIImageView = {
+    private let badge: UIImageView = {
         let imageView = UIImageView()
         imageView.image = nil
         return imageView
@@ -82,11 +83,11 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: - Public
-    func configure(index: Int, game: Game) {
+    func configure(index: Int, game: Game, listSortingType: ListSortingType) {
         gameIdNumber = game.id
         gameTitleLabel.text = game.title
         gameDescribsionLabel.text = game.shortDescription
-        setBedgeStyle(rank: index)
+        setBadgeStyle(index: index, releaseDate: game.releaseDate, listSortingType: listSortingType)
     }
 
     func updateThumbnail(with thumbnail: UIImage?) {
@@ -102,22 +103,42 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: - Private
-    private func setBedgeStyle(rank: Int) {
-        guard rank < 3 else {
-            bedge.isHidden = true
-            return
+    private func setBadgeStyle(index: Int, releaseDate: String, listSortingType: ListSortingType) {
+        if listSortingType == .popularity {
+            guard index < 3 else {
+                badge.isHidden = true
+                return
+            }
+            badge.isHidden = false
+            switch index {
+            case 0:
+                badge.image = UIImage(named: Constants.firstRankBadgeImageName)
+                return
+            case 1:
+                badge.image = UIImage(named: Constants.secondRankBadgeImageName)
+                return
+            case 2:
+                badge.image = UIImage(named: Constants.thirdRankBadgeImageName)
+                return
+            default:
+                badge.isHidden = true
+                return
+            }
         }
-        bedge.isHidden = false
-        switch rank {
-        case 0:
-            bedge.image = UIImage(named: Constants.firstRankBadgeImageName)
-        case 1:
-            bedge.image = UIImage(named: Constants.secondRankBadgeImageName)
-        case 2:
-            bedge.image = UIImage(named: Constants.thirdRankBadgeImageName)
-        default:
-            bedge.isHidden = true
+
+        if listSortingType == .releaseDate {
+            guard let days = DateHandler().dayCount(to: releaseDate) else { return }
+
+            if days > -21 {
+                badge.isHidden = false
+                badge.image = UIImage(named: Constants.newBadgeImageName)
+                return
+            }else {
+                badge.isHidden = true
+                return
+            }
         }
+
     }
 
     private func setupLayout() {
@@ -126,12 +147,12 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(gameThumbnailImageView)
         contentView.addSubview(informationContainerView)
         contentView.addSubview(cellSeperator)
-        contentView.addSubview(bedge)
+        contentView.addSubview(badge)
 
-        bedge.snp.makeConstraints { make in
+        badge.snp.makeConstraints { make in
             make.width.height.equalTo(Constants.squareBadgeImageSize)
-            make.top.equalTo(gameThumbnailImageView).offset(-Constants.bedgeInset)
-            make.leading.equalTo(gameThumbnailImageView).offset(-Constants.bedgeInset)
+            make.top.equalTo(gameThumbnailImageView).offset(-Constants.badgeInset)
+            make.leading.equalTo(gameThumbnailImageView).offset(-Constants.badgeInset)
         }
         gameThumbnailImageView.snp.makeConstraints { make in
             make.width.height.equalTo(Constants.squareThumbnailImageSize)
