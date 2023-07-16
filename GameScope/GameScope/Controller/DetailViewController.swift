@@ -132,9 +132,9 @@ extension DetailViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == DetailViewController.headerElementKind,
-           let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView {
-            view.label.text = Section.allCases[indexPath.section].rawValue
-            return view
+           let HeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView {
+            HeaderView.label.text = Section.allCases[indexPath.section].rawValue
+            return HeaderView
         }
 
         return UICollectionReusableView()
