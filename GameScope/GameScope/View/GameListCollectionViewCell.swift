@@ -22,6 +22,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         static let labelNumberOfLines: Int = 2
 
         static let badgeInset: CGFloat = 6
+        static let latestDayRange: Int = 30
         static let thumbnailAndInfoContainerInset: CGFloat = 10
         static let titleAndDescribsionInset: CGFloat = 4
 
@@ -98,6 +99,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     }
 
     override func prepareForReuse() {
+        badge.isHidden = true
         gameThumbnailImageView.contentMode = .scaleAspectFit
         gameThumbnailImageView.image = skeletonThumbnailImage
     }
@@ -106,7 +108,6 @@ final class GameListCollectionViewCell: UICollectionViewCell {
     private func setBadgeStyle(index: Int, releaseDate: String, listSortingType: ListSortingType) {
         if listSortingType == .popularity {
             guard index < 3 else {
-                badge.isHidden = true
                 return
             }
             badge.isHidden = false
@@ -121,7 +122,6 @@ final class GameListCollectionViewCell: UICollectionViewCell {
                 badge.image = UIImage(named: Constants.thirdRankBadgeImageName)
                 return
             default:
-                badge.isHidden = true
                 return
             }
         }
@@ -129,12 +129,10 @@ final class GameListCollectionViewCell: UICollectionViewCell {
         if listSortingType == .releaseDate {
             guard let days = DateHandler().dayCount(to: releaseDate) else { return }
 
-            if days > -21 {
+            if days > -Constants.latestDayRange {
                 badge.isHidden = false
                 badge.image = UIImage(named: Constants.newBadgeImageName)
                 return
-            } else {
-                badge.isHidden = true
             }
         }
 
