@@ -15,7 +15,6 @@ final class DateHandler {
 
     // MARK: - Public
     func dayCount(from startDateString: String? = nil, to endDateString: String) -> Int? {
-
         var date = convertDateToString(date: Date())
 
         if let startDateString {

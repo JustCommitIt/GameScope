@@ -51,7 +51,7 @@ final class GameListCollectionViewController: UIViewController {
         return button
     }()
 
-    private lazy var seperatorLineView: UIView = {
+    private let seperatorLineView: UIView = {
         let seperatorView = UIView()
         seperatorView.backgroundColor = .separator
         seperatorView.snp.makeConstraints { make in
@@ -74,10 +74,10 @@ final class GameListCollectionViewController: UIViewController {
         segmentControl.addTarget(self, action: #selector(listTypeChanged), for: .valueChanged)
         segmentControl.selectedSegmentIndex = .zero
         segmentControl.backgroundColor = .white
-        segmentControl.selectedSegmentTintColor = .init(hex: "9FEBD9")
+        segmentControl.selectedSegmentTintColor = UIColor(named: "keyColor")
 
-        for index in .zero...segmentItems.count-1 {
-            segmentControl.setWidth(view.frame.width*0.4, forSegmentAt: index)
+        for index in 0...(segmentItems.count-1) {
+            segmentControl.setWidth(view.frame.width * 0.4, forSegmentAt: index)
         }
 
         return segmentControl
@@ -90,7 +90,6 @@ final class GameListCollectionViewController: UIViewController {
         collectionView.register(
             GameListCollectionViewCell.self,
             forCellWithReuseIdentifier: GameListCollectionViewCell.identifier)
-        collectionView.clipsToBounds = false
         return collectionView
     }()
 
@@ -157,7 +156,7 @@ final class GameListCollectionViewController: UIViewController {
     @objc private func listTypeChanged() {
         let selectedIndex = segmentControl.selectedSegmentIndex
         switch selectedIndex {
-        case .zero:
+        case 0:
             currentListSortingType = .popularity
             guard let popGames = gameManager.dispatchPopGames() else { return }
             games = popGames
@@ -220,7 +219,7 @@ extension GameListCollectionViewController {
         var snapShot = Snapshot()
         snapShot.appendSections([.main])
         snapShot.appendItems(games)
-        dataSource.apply(snapShot,animatingDifferences: false )
+        dataSource.apply(snapShot, animatingDifferences: false )
     }
 
 }

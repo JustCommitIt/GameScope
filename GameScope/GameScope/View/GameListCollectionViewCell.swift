@@ -23,7 +23,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
 
         static let badgeInset: CGFloat = 6
         static let thumbnailAndInfoContainerInset: CGFloat = 10
-        static let TitleAndDescribsionInset: CGFloat = 4
+        static let titleAndDescribsionInset: CGFloat = 4
 
         static let firstRankBadgeImageName = "RankBadgeGold"
         static let secondRankBadgeImageName = "RankBadgeSilver"
@@ -133,9 +133,8 @@ final class GameListCollectionViewCell: UICollectionViewCell {
                 badge.isHidden = false
                 badge.image = UIImage(named: Constants.newBadgeImageName)
                 return
-            }else {
+            } else {
                 badge.isHidden = true
-                return
             }
         }
 
@@ -168,7 +167,7 @@ final class GameListCollectionViewCell: UICollectionViewCell {
             make.top.leading.trailing.equalToSuperview()
         }
         gameDescribsionLabel.snp.makeConstraints { make in
-            make.top.equalTo(gameTitleLabel.snp.bottom).offset(Constants.TitleAndDescribsionInset)
+            make.top.equalTo(gameTitleLabel.snp.bottom).offset(Constants.titleAndDescribsionInset)
             make.leading.bottom.trailing.equalToSuperview()
         }
         cellSeperator.snp.makeConstraints { make in

@@ -16,7 +16,6 @@
 		F14B01912A56609800D43B1D /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14B01902A56609800D43B1D /* NetworkError.swift */; };
 		F14B01952A56655000D43B1D /* URLResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14B01942A56655000D43B1D /* URLResponse+.swift */; };
 		F15550722A4EDD0400832E92 /* GameListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15550712A4EDD0400832E92 /* GameListCollectionViewCell.swift */; };
-		F1813CD72A5FFDED00D77CD8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1813CD62A5FFDED00D77CD8 /* UIColor+.swift */; };
 		F1813CD92A623DED00D77CD8 /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1813CD82A623DED00D77CD8 /* DateHandler.swift */; };
 		F1E20C732A4D6E1B00772B80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E20C722A4D6E1B00772B80 /* AppDelegate.swift */; };
 		F1E20C752A4D6E1B00772B80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E20C742A4D6E1B00772B80 /* SceneDelegate.swift */; };
@@ -68,7 +67,6 @@
 		F14B01902A56609800D43B1D /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		F14B01942A56655000D43B1D /* URLResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+.swift"; sourceTree = "<group>"; };
 		F15550712A4EDD0400832E92 /* GameListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListCollectionViewCell.swift; sourceTree = "<group>"; };
-		F1813CD62A5FFDED00D77CD8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		F1813CD82A623DED00D77CD8 /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 		F1E20C6F2A4D6E1B00772B80 /* GameScope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameScope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E20C722A4D6E1B00772B80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				F14B01942A56655000D43B1D /* URLResponse+.swift */,
-				F1813CD62A5FFDED00D77CD8 /* UIColor+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -365,7 +362,6 @@
 				F14B017D2A52AF2B00D43B1D /* JSONDeserializer.swift in Sources */,
 				F6B45FAC2A4E71DA00F1D0DB /* GameListDTO.swift in Sources */,
 				F14B018E2A565B7C00D43B1D /* NetworkDispatcher.swift in Sources */,
-				F1813CD72A5FFDED00D77CD8 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
