@@ -106,10 +106,8 @@ final class GameListCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Private
     private func setBadgeStyle(index: Int, releaseDate: String, listSortingType: ListSortingType) {
-        if listSortingType == .popularity {
-            guard index < 3 else {
-                return
-            }
+        if listSortingType == .popularity,
+           index < 3 {
             badge.isHidden = false
             switch index {
             case 0:
@@ -126,14 +124,11 @@ final class GameListCollectionViewCell: UICollectionViewCell {
             }
         }
 
-        if listSortingType == .releaseDate {
-            guard let days = DateHandler().dayCount(to: releaseDate) else { return }
-
-            if days > -Constants.latestDayRange {
-                badge.isHidden = false
-                badge.image = UIImage(named: Constants.newBadgeImageName)
-                return
-            }
+        if listSortingType == .releaseDate,
+           let days = DateHandler().dayCount(to: releaseDate),
+           days > -Constants.latestDayRange {
+            badge.isHidden = false
+            badge.image = UIImage(named: Constants.newBadgeImageName)
         }
 
     }
