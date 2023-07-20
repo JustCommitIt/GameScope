@@ -36,6 +36,16 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
             forCellWithReuseIdentifier: GameDetailInformationCell.reuseIdentifier)
         return collectionView
     }()
+    private let boundarySupplementaryHeader = {
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: DetailViewController.headerElementKind,
+            alignment: .top)
+        return sectionHeader
+    }()
 
     private var detail: GameDetail?
 
@@ -73,14 +83,6 @@ extension DetailViewController {
     }
 
     private func generateInformationLayout() -> NSCollectionLayoutSection {
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: DetailViewController.headerElementKind,
-            alignment: .top)
-
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0))
@@ -89,10 +91,12 @@ extension DetailViewController {
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.9),
             heightDimension: .fractionalWidth(0.4))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitem: item,
+                                                     count: 1)
 
         let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [sectionHeader]
+        section.boundarySupplementaryItems = [boundarySupplementaryHeader]
         section.orthogonalScrollingBehavior = .groupPagingCentered
 
         return section
