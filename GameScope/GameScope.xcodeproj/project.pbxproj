@@ -39,6 +39,7 @@
 		F6B45FDF2A57A10D00F1D0DB /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45FDE2A57A10D00F1D0DB /* HeaderView.swift */; };
 		F6B45FEA2A5F962200F1D0DB /* GameDetailInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45FE92A5F962200F1D0DB /* GameDetailInformationCell.swift */; };
 		F6B45FEC2A5F97DF00F1D0DB /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45FEB2A5F97DF00F1D0DB /* InformationView.swift */; };
+		F6B45FEE2A63711F00F1D0DB /* GameDetailDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45FED2A63711F00F1D0DB /* GameDetailDescriptionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		F6B45FDE2A57A10D00F1D0DB /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		F6B45FE92A5F962200F1D0DB /* GameDetailInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailInformationCell.swift; sourceTree = "<group>"; };
 		F6B45FEB2A5F97DF00F1D0DB /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		F6B45FED2A63711F00F1D0DB /* GameDetailDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailDescriptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				F15550712A4EDD0400832E92 /* gameListCollectionViewCell.swift */,
 				F6B45FE92A5F962200F1D0DB /* GameDetailInformationCell.swift */,
 				F6B45FEB2A5F97DF00F1D0DB /* InformationView.swift */,
+				F6B45FED2A63711F00F1D0DB /* GameDetailDescriptionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				F6B45FEC2A5F97DF00F1D0DB /* InformationView.swift in Sources */,
 				F6B45FB22A4E775100F1D0DB /* ScreenshotDTO.swift in Sources */,
 				F6B45FDF2A57A10D00F1D0DB /* HeaderView.swift in Sources */,
+				F6B45FEE2A63711F00F1D0DB /* GameDetailDescriptionCell.swift in Sources */,
 				F6B45FD82A500F5200F1D0DB /* DetailViewController.swift in Sources */,
 				F6B45FB92A4EA9E700F1D0DB /* GameList.swift in Sources */,
 				F6B45FAC2A4E71DA00F1D0DB /* GameListDTO.swift in Sources */,
