@@ -72,7 +72,7 @@ extension DetailViewController {
             case .thumbnail:
                 return nil
             case .about:
-                return nil
+                return self.generateAboutLayout()
             case .information:
                 return self.generateInformationLayout()
             case .screenshots:
@@ -80,6 +80,26 @@ extension DetailViewController {
             }
         }
         return layout
+    }
+
+    private func generateAboutLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(100))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.9),
+            heightDimension: .estimated(100))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                     subitem: item,
+                                                     count: 1)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [boundarySupplementaryHeader]
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+
+        return section
     }
 
     private func generateInformationLayout() -> NSCollectionLayoutSection {
