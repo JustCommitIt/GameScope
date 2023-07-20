@@ -34,6 +34,9 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
         collectionView.register(
             GameDetailInformationCell.self,
             forCellWithReuseIdentifier: GameDetailInformationCell.reuseIdentifier)
+        collectionView.register(
+            GameDetailDescriptionCell.self,
+            forCellWithReuseIdentifier: GameDetailDescriptionCell.reuseIdentifier)
         return collectionView
     }()
     private let boundarySupplementaryHeader = {
@@ -131,7 +134,7 @@ extension DetailViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch Section.allCases[section] {
-        case .information:
+        case .about, .information:
             return 1
         default:
             return 0
@@ -140,6 +143,16 @@ extension DetailViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch Section.allCases[indexPath.section] {
+        case .about:
+            guard let detail,
+                  let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: GameDetailDescriptionCell.reuseIdentifier,
+                    for: indexPath) as? GameDetailDescriptionCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(description: detail.description)
+            cell.delegate = self
+            return cell
         case .information:
             guard let detail = detail,
                   let cell = collectionView.dequeueReusableCell(
@@ -162,5 +175,16 @@ extension DetailViewController: UICollectionViewDataSource {
         }
 
         return UICollectionReusableView()
+    }
+
+}
+
+extension DetailViewController: GameDetailDescriptionCellDelegate {
+    func gameDetailDescriptionCell(
+        _ gameDetailDescriptionCell: GameDetailDescriptionCell,
+        didButtonTapped sender: UIButton
+    ) {
+        gameDetailDescriptionCell.expandDetailDescription()
+        self.detailCollectionView.reloadData()
     }
 }
