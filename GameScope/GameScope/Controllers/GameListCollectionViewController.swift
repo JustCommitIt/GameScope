@@ -76,7 +76,7 @@ final class GameListCollectionViewController: UIViewController {
         segmentControl.backgroundColor = .white
         segmentControl.selectedSegmentTintColor = UIColor(named: "keyColor")
 
-        for index in 0 ... (segmentItems.count-1) {
+        for index in 0...(segmentItems.count - 1) {
             segmentControl.setWidth(view.frame.width * 0.4, forSegmentAt: index)
         }
 
