@@ -59,6 +59,7 @@ extension GameDTO {
         return .init(id: id,
                      title: title,
                      thumbnail: thumbnail,
-                     shortDescription: shortDescription)
+                     shortDescription: shortDescription,
+                     releaseDate: releaseDate)
     }
 }
