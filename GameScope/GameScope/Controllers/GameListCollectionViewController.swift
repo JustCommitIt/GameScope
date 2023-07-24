@@ -90,6 +90,7 @@ final class GameListCollectionViewController: UIViewController {
         collectionView.register(
             GameListCollectionViewCell.self,
             forCellWithReuseIdentifier: GameListCollectionViewCell.identifier)
+        collectionView.delegate = self
         return collectionView
     }()
 
@@ -222,4 +223,22 @@ extension GameListCollectionViewController {
         dataSource.apply(snapShot, animatingDifferences: false)
     }
 
+}
+
+extension GameListCollectionViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let url = Bundle.main.url(forResource: "detail-game-pubg", withExtension: "json") else {
+            return
+        }
+
+        do {
+            let data = try String(contentsOf: url).data(using: .utf8)!
+            let gameDetailDTO = try JSONDecoder().decode(GameDetailDTO.self, from: data)
+            let result = gameDetailDTO.convert()
+            let albumDetailVC = DetailViewController(gameDetail: result)
+            navigationController?.pushViewController(albumDetailVC, animated: true)
+        } catch {
+            print(error)
+        }
+    }
 }
