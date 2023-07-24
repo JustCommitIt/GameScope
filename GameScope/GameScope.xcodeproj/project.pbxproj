@@ -24,6 +24,7 @@
 		F1E20C7F2A4D6E1C00772B80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1E20C7D2A4D6E1C00772B80 /* LaunchScreen.storyboard */; };
 		F1E20C8D2A4EACF900772B80 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1E20C8C2A4EACF900772B80 /* SnapKit */; };
 		F60B0D062A6E03CA004CE3D5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B0D052A6E03CA004CE3D5 /* DetailViewController.swift */; };
+		F60B0D082A6E42C5004CE3D5 /* GameDetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B0D072A6E42C5004CE3D5 /* GameDetailImageCell.swift */; };
 		F6B45FA82A4DA96000F1D0DB /* popular-pvp-games.json in Resources */ = {isa = PBXBuildFile; fileRef = F6B45FA72A4DA96000F1D0DB /* popular-pvp-games.json */; };
 		F6B45FAA2A4DA9C200F1D0DB /* detail-game-pubg.json in Resources */ = {isa = PBXBuildFile; fileRef = F6B45FA92A4DA9C200F1D0DB /* detail-game-pubg.json */; };
 		F6B45FAC2A4E71DA00F1D0DB /* GameListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45FAB2A4E71DA00F1D0DB /* GameListDTO.swift */; };
@@ -79,6 +80,7 @@
 		F1E20C7E2A4D6E1C00772B80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1E20C802A4D6E1C00772B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F60B0D052A6E03CA004CE3D5 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F60B0D072A6E42C5004CE3D5 /* GameDetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailImageCell.swift; sourceTree = "<group>"; };
 		F6B45FA72A4DA96000F1D0DB /* popular-pvp-games.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "popular-pvp-games.json"; sourceTree = "<group>"; };
 		F6B45FA92A4DA9C200F1D0DB /* detail-game-pubg.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "detail-game-pubg.json"; sourceTree = "<group>"; };
 		F6B45FAB2A4E71DA00F1D0DB /* GameListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListDTO.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				F6B45FEB2A5F97DF00F1D0DB /* InformationView.swift */,
 				F6B45FED2A63711F00F1D0DB /* GameDetailDescriptionCell.swift */,
 				F15550712A4EDD0400832E92 /* GameListCollectionViewCell.swift */,
+				F60B0D072A6E42C5004CE3D5 /* GameDetailImageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				F6B45FB22A4E775100F1D0DB /* ScreenshotDTO.swift in Sources */,
 				F6B45FDF2A57A10D00F1D0DB /* HeaderView.swift in Sources */,
 				F6B45FEE2A63711F00F1D0DB /* GameDetailDescriptionCell.swift in Sources */,
+				F60B0D082A6E42C5004CE3D5 /* GameDetailImageCell.swift in Sources */,
 				F6B45FB92A4EA9E700F1D0DB /* GameList.swift in Sources */,
 				F14B017D2A52AF2B00D43B1D /* JSONDeserializer.swift in Sources */,
 				F6B45FAC2A4E71DA00F1D0DB /* GameListDTO.swift in Sources */,
