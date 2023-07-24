@@ -37,6 +37,9 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
         collectionView.register(
             GameDetailDescriptionCell.self,
             forCellWithReuseIdentifier: GameDetailDescriptionCell.reuseIdentifier)
+        collectionView.register(
+            GameDetailImageCell.self,
+            forCellWithReuseIdentifier: GameDetailImageCell.reuseIdentifier)
         return collectionView
     }()
     private let boundarySupplementaryHeader = {
@@ -72,14 +75,12 @@ extension DetailViewController {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
             let sectionLayoutKind = Section.allCases[sectionIndex]
             switch sectionLayoutKind {
-            case .thumbnail:
-                return nil
+            case .thumbnail, .screenshots:
+                return self.generateImageLayout()
             case .about:
                 return self.generateAboutLayout()
             case .information:
                 return self.generateInformationLayout()
-            case .screenshots:
-                return nil
             }
         }
         return layout
@@ -124,6 +125,27 @@ extension DetailViewController {
 
         return section
     }
+
+    private func generateImageLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.9),
+            heightDimension: .fractionalWidth(0.6))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitem: item,
+                                                     count: 1)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [boundarySupplementaryHeader]
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+
+        return section
+    }
 }
 
 extension DetailViewController: UICollectionViewDataSource {
@@ -133,19 +155,34 @@ extension DetailViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch Section.allCases[section] {
-        case .about, .information:
-            return 1
-        default:
+        guard let detail else {
             return 0
+        }
+
+        switch Section.allCases[section] {
+        case .thumbnail, .about, .information:
+            return 1
+        case .screenshots:
+            return detail.screenshots.count
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let detail else {
+            return UICollectionViewCell()
+        }
+
         switch Section.allCases[indexPath.section] {
+        case .thumbnail:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: GameDetailImageCell.reuseIdentifier,
+                for: indexPath) as? GameDetailImageCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(urlString: detail.thumbnail)
+            return cell
         case .about:
-            guard let detail,
-                  let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: GameDetailDescriptionCell.reuseIdentifier,
                     for: indexPath) as? GameDetailDescriptionCell else {
                 return UICollectionViewCell()
@@ -154,22 +191,30 @@ extension DetailViewController: UICollectionViewDataSource {
             cell.delegate = self
             return cell
         case .information:
-            guard let detail = detail,
-                  let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: GameDetailInformationCell.reuseIdentifier,
                     for: indexPath) as? GameDetailInformationCell else {
                 return UICollectionViewCell()
             }
             cell.configure(information: detail)
             return cell
-        default:
-            return UICollectionViewCell()
+        case .screenshots:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: GameDetailImageCell.reuseIdentifier,
+                for: indexPath) as? GameDetailImageCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(urlString: detail.screenshots[indexPath.row])
+            return cell
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == DetailViewController.headerElementKind,
-           let HeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView {
+           let HeaderView = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: HeaderView.reuseIdentifier,
+            for: indexPath) as? HeaderView {
             HeaderView.label.text = Section.allCases[indexPath.section].rawValue
             return HeaderView
         }
