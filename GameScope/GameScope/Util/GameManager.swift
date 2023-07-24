@@ -78,6 +78,28 @@ final class GameManager {
         }
     }
 
+    func dispatchImage(of url: String) async throws -> UIImage? {
+        let cacheKey = NSString(string: url)
+        if let chachedImage = ImageCacheManager.shared.object(forKey: cacheKey) {
+            return chachedImage
+        }
+
+        guard let thumbnailURL = URL(string: url) else { throw NetworkError.invalidURL }
+        let urlRequest = URLRequest(url: thumbnailURL)
+
+        let imageResult = try await networkDispatcher.performRequest(urlRequest)
+
+        switch imageResult {
+        case .success(let data):
+            guard let thumbnailImage = UIImage(data: data) else { throw NetworkError.emptyData}
+            ImageCacheManager.shared.setObject(thumbnailImage, forKey: cacheKey)
+            return thumbnailImage
+        case .failure(let error):
+            print(error.errorDescription)
+            return nil
+        }
+    }
+
     // MARK: - Private
     private func fetchGameList(of listKind: dummyConstants) -> GameListDTO? {
         guard let dataUrl = Bundle.main.url(
